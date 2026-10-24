@@ -1,0 +1,4 @@
+init.defaultbranch=main
+user.name=[REDACTED]
+user.email=[REDACTED]
+remote.origin.url=https://github.com/PassionWoo/codyssey-precourse.git
