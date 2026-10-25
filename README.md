@@ -2,7 +2,7 @@
 
 > **과제:** 입학연수(Pre-course) — 개발 입문 (필수)
 > **수행일:** 2026-10-24
-> **GitHub:** [PassionWoo/codyssey-precourse](https://github.com/PassionWoo/codyssey-precourse)
+> **GitHub:** [PassionWoo/E_1_Work_Space](https://github.com/PassionWoo/E_1_Work_Space)
 > **최초 Commit:** `b4faffb` (`Initial commit: Linux practice and Docker web server`)
 
 ## 1. 프로젝트 개요
@@ -68,7 +68,7 @@ Windows (PowerShell · Chrome · VS Code 화면)
 ## 4. 저장소 구성
 
 ```text
-codyssey-precourse/
+E_1_Work_Space/
 ├── 01_terminal/
 │   ├── empty.txt
 │   └── hello.txt
@@ -549,7 +549,7 @@ nothing to commit, working tree clean
 
 VS Code Source Control의 **Publish Branch** 기능으로 GitHub 계정을 인증하고 `PassionWoo/codyssey-precourse` 원격 저장소를 게시했다. 웹 화면에서 `main` 브랜치, 최초 Commit `b4faffb`, 두 실습 디렉터리 및 **Private** 상태를 확인했다.
 
-- 저장소: [https://github.com/PassionWoo/codyssey-precourse](https://github.com/PassionWoo/codyssey-precourse)
+- 저장소: [https://github.com/PassionWoo/E_1_Work_Space](https://github.com/PassionWoo/E_1_Work_Space)
 - 최초 게시 상태: **Private** (평가자가 접근할 수 있도록 제출 규칙에 맞게 조정 필요)
 - GitHub에는 **소스코드와 Git 이력**이 게시되며, 실행 중인 Docker 컨테이너나 로컬 볼륨의 실제 데이터가 자동으로 업로드되지는 않는다.
 
@@ -595,8 +595,8 @@ VS Code Source Control의 **Publish Branch** 기능으로 GitHub 계정을 인�
 
 ```bash
 # 1) 프로젝트 받기 (접근 권한 필요)
-git clone https://github.com/PassionWoo/codyssey-precourse.git
-cd codyssey-precourse
+git clone https://github.com/PassionWoo/E_1_Work_Space.git
+cd E_1_Work_Space
 
 # 2) 최초 실습 HTML 확인 (GitHub에 보완본 반영 후)
 cat 02_webserver/site/index.html
@@ -655,5 +655,5 @@ docker exec verify-vol-b cat /data/test.txt
 
 ---
 
-**제출 대상:** GitHub Repository 링크 — [PassionWoo/codyssey-precourse](https://github.com/PassionWoo/codyssey-precourse)
+**제출 대상:** GitHub Repository 링크 — [PassionWoo/E_1_Work_Space](https://github.com/PassionWoo/E_1_Work_Space)
 **검증 근거:** 이 README의 명령·출력, [기존 실행 로그](evidence/실행_검증_로그.md), [보완 재검증 로그](evidence/보완_재검증_로그.md), [evidence/ 증거 이미지](evidence/)
