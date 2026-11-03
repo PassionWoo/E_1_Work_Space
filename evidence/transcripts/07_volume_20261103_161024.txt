@@ -1,0 +1,57 @@
+﻿**********************
+Windows PowerShell 기록 시작
+시작 시간: 20261103161024
+사용자 이름: 5F-98\User
+RunAs 사용자: 5F-98\User
+구성 이름: 
+Machine: 5F-98 (Microsoft Windows NT 10.0.26300.0)
+호스트 응용 프로그램: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+프로세스 ID: 10944
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+기록이 시작되었습니다. 출력 파일은 C:\Users\User\codyssey-e1-records\07_volume_20261103_161024.txt입니다.
+PS C:\Users\User\E_1_Work_Space> Copy-Item "$HOME\codyssey-e1-records\06_docker_operations_20261103_160135.txt" ".\evidence\transcripts\"
+PS C:\Users\User\E_1_Work_Space> 종료 오류(TabExpansion2): "'inputScript' 매개 변수가 빈 문자열이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다."
+PS C:\Users\User\E_1_Work_Space> (Get-FileHash "$HOME\codyssey-e1-records\06_docker_operations_20261103_160135.txt").Hash -eq (Get-FileHash ".\evidence\transcripts\06_docker_operations_20261103_160135.txt").Hash
+True
+PS C:\Users\User\E_1_Work_Space> docker volume ls
+
+PS C:\Users\User\E_1_Work_Space> docker volume create codyssey-volume-lab-20261103
+
+PS C:\Users\User\E_1_Work_Space> docker volume inspect codyssey-volume-lab-20261103
+
+PS C:\Users\User\E_1_Work_Space> 종료 오류(TabExpansion2): "'inputScript' 매개 변수가 빈 문자열이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다."
+PS C:\Users\User\E_1_Work_Space> docker run -d --name codyssey-volume-a --mount type=volume,source=codyssey-volume-lab-20261103,target=/data ubuntu:24.04 sleep infinity
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-volume-a sh -c 'echo Codyssey-Volume-Persistence-Test > /data/test.txt'
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-volume-a cat /data/test.txt
+
+PS C:\Users\User\E_1_Work_Space> docker inspect --format '{{json .Mounts}}' codyssey-volume-a
+
+PS C:\Users\User\E_1_Work_Space> docker rm -f codyssey-volume-a
+
+PS C:\Users\User\E_1_Work_Space> docker ps -a --filter "name=codyssey-volume-a"
+
+PS C:\Users\User\E_1_Work_Space> docker run -d --name codyssey-volume-b --mount type=volume,source=codyssey-volume-lab-20261103,target=/data ubuntu:24.04 sleep infinity
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-volume-b cat /data/test.txt
+
+PS C:\Users\User\E_1_Work_Space> docker inspect --format '{{json .Mounts}}' codyssey-volume-b
+
+PS C:\Users\User\E_1_Work_Space> docker volume ls
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-volume-b ls -l /data
+
+PS C:\Users\User\E_1_Work_Space> Stop-Transcript
+**********************
+Windows PowerShell 기록 끝
+종료 시간: 20261103161358
+**********************

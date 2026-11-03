@@ -1,0 +1,97 @@
+﻿**********************
+Windows PowerShell 기록 시작
+시작 시간: 20261103155100
+사용자 이름: 5F-98\User
+RunAs 사용자: 5F-98\User
+구성 이름: 
+Machine: 5F-98 (Microsoft Windows NT 10.0.26300.0)
+호스트 응용 프로그램: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+프로세스 ID: 10944
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+기록이 시작되었습니다. 출력 파일은 C:\Users\User\codyssey-e1-records\05_linux_cli_20261103_155100.txt입니다.
+PS C:\Users\User\E_1_Work_Space> Copy-Item "$HOME\codyssey-e1-records\04_evidence_20261103_152906.txt" ".\evidence\transcripts\"
+PS C:\Users\User\E_1_Work_Space> (Get-FileHash "$HOME\codyssey-e1-records\04_evidence_20261103_152906.txt").Hash -eq (Get-FileHash ".\evidence\transcripts\04_evidence_20261103_152906.txt").Hash
+True
+PS C:\Users\User\E_1_Work_Space> docker run -d --name codyssey-cli-lab ubuntu:24.04 sleep infinity
+
+PS C:\Users\User\E_1_Work_Space> docker ps --filter "name=codyssey-cli-lab"
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab cat /etc/os-release
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab pwd
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -la /
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab sh -c 'echo "HOME=$HOME"; ls -la "$HOME"'
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab mkdir -p /root/codyssey-lab/practice
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab touch /root/codyssey-lab/practice/hello.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -la /root/codyssey-lab/practice
+
+PS C:\Users\User\E_1_Work_Space> docker exec -w /root/codyssey-lab/practice codyssey-cli-lab pwd
+
+PS C:\Users\User\E_1_Work_Space> docker exec -w /root/codyssey-lab/practice codyssey-cli-lab sh -c 'echo Hello-from-Ubuntu-CLI > ./hello.txt'
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab cat /root/codyssey-lab/practice/hello.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec -w /root/codyssey-lab/practice codyssey-cli-lab cp hello.txt hello-copy.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec -w /root/codyssey-lab/practice codyssey-cli-lab mkdir archive
+
+PS C:\Users\User\E_1_Work_Space> docker exec -w /root/codyssey-lab/practice codyssey-cli-lab mv hello-copy.txt archive/hello-moved.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec -w /root/codyssey-lab/practice codyssey-cli-lab ls -la archive
+
+PS C:\Users\User\E_1_Work_Space> docker exec -w /root/codyssey-lab/practice codyssey-cli-lab ls -la
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab cat /root/codyssey-lab/practice/archive/hello-moved.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab rm /root/codyssey-lab/practice/archive/hello-moved.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -la /root/codyssey-lab/practice/archive
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -l /root/codyssey-lab/practice/hello.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab chmod 600 /root/codyssey-lab/practice/hello.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -l /root/codyssey-lab/practice/hello.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -ld /root/codyssey-lab/practice/archive
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab chmod 700 /root/codyssey-lab/practice/archive
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -ld /root/codyssey-lab/practice/archive
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab mkdir -p /tmp/codyssey-permission-test
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab sh -c 'echo Permission-Test > /tmp/codyssey-permission-test/demo.txt'
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -ld /tmp/codyssey-permission-test
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -l /tmp/codyssey-permission-test/demo.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec -u 65534:65534 codyssey-cli-lab cat /tmp/codyssey-permission-test/demo.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab chmod 600 /tmp/codyssey-permission-test/demo.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-cli-lab ls -l /tmp/codyssey-permission-test/demo.txt
+
+PS C:\Users\User\E_1_Work_Space> docker exec -u 65534:65534 codyssey-cli-lab cat /tmp/codyssey-permission-test/demo.txt
+
+PS C:\Users\User\E_1_Work_Space> $LASTEXITCODE
+1
+PS C:\Users\User\E_1_Work_Space> Stop-Transcript
+**********************
+Windows PowerShell 기록 끝
+종료 시간: 20261103160051
+**********************

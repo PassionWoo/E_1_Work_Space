@@ -657,3 +657,9 @@ docker exec verify-vol-b cat /data/test.txt
 
 **제출 대상:** GitHub Repository 링크 — [PassionWoo/E_1_Work_Space](https://github.com/PassionWoo/E_1_Work_Space)
 **검증 근거:** 이 README의 명령·출력, [기존 실행 로그](evidence/실행_검증_로그.md), [보완 재검증 로그](evidence/보완_재검증_로그.md), [evidence/ 증거 이미지](evidence/)
+
+## 16. 2026년 11월 3일 새 환경 재현 검증
+
+2026년 10월 24일의 기존 실습과 구분하여, Windows PowerShell 및 Docker Desktop 환경에서 주요 기능을 재검증했다.
+
+실제 명령어, 실행 결과, 오류 해결 과정은 [2026년 11월 3일 재현 검증 보고서](evidence/20261103_재현_검증_보고서.md)에 기록했다.

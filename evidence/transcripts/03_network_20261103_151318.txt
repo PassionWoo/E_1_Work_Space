@@ -1,0 +1,66 @@
+﻿**********************
+Windows PowerShell 기록 시작
+시작 시간: 20261103151318
+사용자 이름: 5F-98\User
+RunAs 사용자: 5F-98\User
+구성 이름: 
+Machine: 5F-98 (Microsoft Windows NT 10.0.26300.0)
+호스트 응용 프로그램: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+프로세스 ID: 10944
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+기록이 시작되었습니다. 출력 파일은 C:\Users\User\codyssey-e1-records\03_network_20261103_151318.txt입니다.
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-web-8080 readlink /proc/self/ns/net
+
+PS C:\Users\User\E_1_Work_Space> docker run -d --name codyssey-net-test codyssey-web:1.0
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-net-test readlink /proc/self/ns/net
+
+PS C:\Users\User\E_1_Work_Space> docker inspect --format '{{json .NetworkSettings.Ports}}' codyssey-web-8080
+
+PS C:\Users\User\E_1_Work_Space> docker inspect --format '{{json .NetworkSettings.Ports}}' codyssey-net-test
+
+PS C:\Users\User\E_1_Work_Space> docker run -d --name codyssey-port-conflict -p 127.0.0.1:8080:80 codyssey-web:1.0
+
+PS C:\Users\User\E_1_Work_Space> docker ps --filter "publish=8080"
+
+PS C:\Users\User\E_1_Work_Space> Get-NetTCPConnection -LocalPort 8080 -State Listen | Select-Object LocalAddress,LocalPort,State,OwningProcess
+
+LocalAddress LocalPort  State OwningProcess
+------------ ---------  ----- -------------
+127.0.0.1         8080 Listen         12876
+
+
+PS C:\Users\User\E_1_Work_Space> Get-Process -Id 12876 | Select-Object Id, ProcessName, Path
+
+   Id ProcessName        Path
+   -- -----------        ----
+12876 com.docker.backend C:\Program Files\Docker\Docker\resources\com.docker.backend.exe
+
+
+PS C:\Users\User\E_1_Work_Space> docker ps -a --filter "name=codyssey-port-conflict"
+
+PS C:\Users\User\E_1_Work_Space> docker rm codyssey-port-conflict
+
+PS C:\Users\User\E_1_Work_Space> Get-NetTCPConnection -LocalPort 8081 -State Listen -ErrorAction SilentlyContinue | Select-Object LocalAddress,LocalPort,OwningProcess
+PS C:\Users\User\E_1_Work_Space> docker run -d --name codyssey-web-8081 -p 127.0.0.1:8081:80 codyssey-web:1.0
+
+PS C:\Users\User\E_1_Work_Space> docker ps
+
+PS C:\Users\User\E_1_Work_Space> curl.exe -i http://127.0.0.1:8081/
+
+PS C:\Users\User\E_1_Work_Space> 종료 오류(TabExpansion2): "'inputScript' 매개 변수가 빈 문자열이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다."
+PS C:\Users\User\E_1_Work_Space> curl.exe -i http://127.0.0.1:8080/
+
+PS C:\Users\User\E_1_Work_Space> Stop-Transcript
+**********************
+Windows PowerShell 기록 끝
+종료 시간: 20261103152120
+**********************

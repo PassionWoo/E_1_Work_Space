@@ -1,0 +1,42 @@
+﻿**********************
+Windows PowerShell 기록 시작
+시작 시간: 20261103152906
+사용자 이름: 5F-98\User
+RunAs 사용자: 5F-98\User
+구성 이름: 
+Machine: 5F-98 (Microsoft Windows NT 10.0.26300.0)
+호스트 응용 프로그램: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+프로세스 ID: 10944
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+기록이 시작되었습니다. 출력 파일은 C:\Users\User\codyssey-e1-records\04_evidence_20261103_152906.txt입니다.
+PS C:\Users\User\E_1_Work_Space> Get-ChildItem .\evidence\transcripts\*.txt | ForEach-Object {
+    $original = Join-Path "$HOME\codyssey-e1-records" $_.Name
+    [PSCustomObject]@{
+        File = $_.Name
+        SameHash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash -eq (Get-FileHash $original -Algorithm SHA256).Hash
+    }
+}
+
+File                                SameHash
+----                                --------
+01_environment_20261103_145639.txt      True
+02_reproduction_20261103_150403.txt     True
+03_network_20261103_151318.txt          True
+
+
+PS C:\Users\User\E_1_Work_Space> Select-String -Path .\evidence\transcripts\*.txt -Pattern 'password|token|secret|authorization|PRIVATE KEY|ghp_|github_pat_' | Select-Object Path, LineNumber
+PS C:\Users\User\E_1_Work_Space> git status --short
+
+PS C:\Users\User\E_1_Work_Space> Stop-Transcript
+**********************
+Windows PowerShell 기록 끝
+종료 시간: 20261103153201
+**********************

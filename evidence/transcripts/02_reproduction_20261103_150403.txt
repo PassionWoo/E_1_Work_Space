@@ -1,0 +1,108 @@
+﻿**********************
+Windows PowerShell 기록 시작
+시작 시간: 20261103150403
+사용자 이름: 5F-98\User
+RunAs 사용자: 5F-98\User
+구성 이름: 
+Machine: 5F-98 (Microsoft Windows NT 10.0.26300.0)
+호스트 응용 프로그램: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+프로세스 ID: 10944
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+기록이 시작되었습니다. 출력 파일은 C:\Users\User\codyssey-e1-records\02_reproduction_20261103_150403.txt입니다.
+PS C:\Users\User\E_1_Work_Space> git status
+
+PS C:\Users\User\E_1_Work_Space> Get-ChildItem .\02_webserver -Recurse
+
+
+    디렉터리: C:\Users\User\E_1_Work_Space\02_webserver
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-11-03   오후 3:02                site
+-a----      2026-11-03   오후 3:02             65 Dockerfile
+
+
+    디렉터리: C:\Users\User\E_1_Work_Space\02_webserver\site
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----      2026-11-03   오후 3:02             38 index.html
+
+
+PS C:\Users\User\E_1_Work_Space> Get-Content .\02_webserver\Dockerfile
+FROM nginx:alpine
+COPY site/ /usr/share/nginx/html/
+EXPOSE 80
+PS C:\Users\User\E_1_Work_Space> Get-Content .\02_webserver\site\index.html
+<h1>Hello from Codyssey Docker!</h1>
+PS C:\Users\User\E_1_Work_Space> docker image ls
+
+PS C:\Users\User\E_1_Work_Space> docker build -t codyssey-web:1.0 .\02_webserver
+
+PS C:\Users\User\E_1_Work_Space> docker run -d --name codyssey-web-8080 -p 127.0.0.1:8080:80 codyssey-web:1.0
+
+PS C:\Users\User\E_1_Work_Space> docker ps
+
+PS C:\Users\User\E_1_Work_Space> curl.exe -i http://127.0.0.1:8080/
+
+PS C:\Users\User\E_1_Work_Space> Start-Process "http://127.0.0.1:8080/"
+PS C:\Users\User\E_1_Work_Space> Get-Item .\evidence\20261103_port_8080_browser.png
+Get-Item : 'C:\Users\User\E_1_Work_Space\evidence\20261103_port_8080_browser.png' 경로는 존재하지 않으므로 찾을 수 없습니다.
+위치 줄:1 문자:1
++ Get-Item .\evidence\20261103_port_8080_browser.png
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\User\E...080_browser.png:String) [Get-Item], ItemNotFoundExcepti
+on
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemCommand
+Get-Item : 'C:\Users\User\E_1_Work_Space\evidence\20261103_port_8080_browser.png' 경로는 존재하지 않으므로 찾을 수 없습
+니다.
+위치 줄:1 문자:1
++ Get-Item .\evidence\20261103_port_8080_browser.png
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\User\E...080_browser.png:String) [Get-Item], ItemNotFoundExcep
+   tion
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemCommand
+
+PS C:\Users\User\E_1_Work_Space> Get-Item .\evidence\20261103_port_8080_browser.png
+Get-Item : 'C:\Users\User\E_1_Work_Space\evidence\20261103_port_8080_browser.png' 경로는 존재하지 않으므로 찾을 수 없습니다.
+위치 줄:1 문자:1
++ Get-Item .\evidence\20261103_port_8080_browser.png
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\User\E...080_browser.png:String) [Get-Item], ItemNotFoundExcepti
+on
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemCommand
+Get-Item : 'C:\Users\User\E_1_Work_Space\evidence\20261103_port_8080_browser.png' 경로는 존재하지 않으므로 찾을 수 없습
+니다.
+위치 줄:1 문자:1
++ Get-Item .\evidence\20261103_port_8080_browser.png
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\User\E...080_browser.png:String) [Get-Item], ItemNotFoundExcep
+   tion
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemCommand
+
+PS C:\Users\User\E_1_Work_Space> Get-Item .\evidence\20261103_port_8080_browser.png
+
+
+    디렉터리: C:\Users\User\E_1_Work_Space\evidence
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----      2026-11-03   오후 3:09         133233 20261103_port_8080_browser.png
+
+
+PS C:\Users\User\E_1_Work_Space> Stop-Transcript
+**********************
+Windows PowerShell 기록 끝
+종료 시간: 20261103151313
+**********************

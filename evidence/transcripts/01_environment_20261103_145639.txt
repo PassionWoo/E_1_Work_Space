@@ -1,0 +1,85 @@
+﻿**********************
+Windows PowerShell 기록 시작
+시작 시간: 20261103145641
+사용자 이름: 5F-98\User
+RunAs 사용자: 5F-98\User
+구성 이름: 
+Machine: 5F-98 (Microsoft Windows NT 10.0.26300.0)
+호스트 응용 프로그램: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+프로세스 ID: 10944
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+기록이 시작되었습니다. 출력 파일은 C:\Users\User\codyssey-e1-records\01_environment_20261103_145639.txt입니다.
+PS C:\Users\User> Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, BuildNumber
+
+Caption                  Version    BuildNumber
+-------                  -------    -----------
+Microsoft Windows 11 Pro 10.0.26300 26300
+
+
+PS C:\Users\User> $PSVersionTable.PSVersion
+
+Major  Minor  Build  Revision
+-----  -----  -----  --------
+5      1      26100  9711
+
+
+PS C:\Users\User> docker version
+
+PS C:\Users\User> wsl --list --verbose
+
+PS C:\Users\User> git --version
+git : 'git' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:1 문자:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : 'git' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지
+ 확인하고 경로가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:1 문자:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\User> winget --version
+
+PS C:\Users\User> winget install --id Git.Git --exact --source winget --accept-source-agreements --accept-package-agreements
+
+PS C:\Users\User> $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
+PS C:\Users\User> git --version
+
+PS C:\Users\User> Test-Path "$HOME\E_1_Work_Space"
+False
+PS C:\Users\User> git clone https://github.com/PassionWoo/E_1_Work_Space.git "$HOME\E_1_Work_Space"
+
+PS C:\Users\User> cd "$HOME\E_1_Work_Space"
+PS C:\Users\User\E_1_Work_Space> Get-ChildItem
+
+
+    디렉터리: C:\Users\User\E_1_Work_Space
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-11-03   오후 3:02                01_terminal
+d-----      2026-11-03   오후 3:02                02_webserver
+d-----      2026-11-03   오후 3:02                evidence
+-a----      2026-11-03   오후 3:02          29539 README.md
+
+
+PS C:\Users\User\E_1_Work_Space> git remote -v
+
+PS C:\Users\User\E_1_Work_Space> Stop-Transcript
+**********************
+Windows PowerShell 기록 끝
+종료 시간: 20261103150356
+**********************

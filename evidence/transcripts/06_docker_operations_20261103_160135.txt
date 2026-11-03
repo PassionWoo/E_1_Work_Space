@@ -1,0 +1,100 @@
+﻿**********************
+Windows PowerShell 기록 시작
+시작 시간: 20261103160135
+사용자 이름: 5F-98\User
+RunAs 사용자: 5F-98\User
+구성 이름: 
+Machine: 5F-98 (Microsoft Windows NT 10.0.26300.0)
+호스트 응용 프로그램: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+프로세스 ID: 10944
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+기록이 시작되었습니다. 출력 파일은 C:\Users\User\codyssey-e1-records\06_docker_operations_20261103_160135.txt입니다.
+PS C:\Users\User\E_1_Work_Space> Copy-Item "$HOME\codyssey-e1-records\05_linux_cli_20261103_155100.txt" ".\evidence\transcripts\"
+PS C:\Users\User\E_1_Work_Space> (Get-FileHash "$HOME\codyssey-e1-records\05_linux_cli_20261103_155100.txt").Hash -eq (Get-FileHash ".\evidence\transcripts\05_linux_cli_20261103_155100.txt").Hash
+True
+PS C:\Users\User\E_1_Work_Space> docker image ls
+
+PS C:\Users\User\E_1_Work_Space> docker ps -a
+
+PS C:\Users\User\E_1_Work_Space> docker logs --tail 20 codyssey-web-8080
+
+PS C:\Users\User\E_1_Work_Space> docker stats --no-stream
+
+PS C:\Users\User\E_1_Work_Space> docker stop codyssey-net-test
+
+PS C:\Users\User\E_1_Work_Space> docker ps -a --filter "name=codyssey-net-test"
+
+PS C:\Users\User\E_1_Work_Space> docker start codyssey-net-test
+
+PS C:\Users\User\E_1_Work_Space> docker ps --filter "name=codyssey-net-test"
+
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-net-test readlink /proc/self/ns/net
+
+PS C:\Users\User\E_1_Work_Space> New-Item -ItemType Directory -Force -Path ".\evidence\bind-lab"
+
+
+    디렉터리: C:\Users\User\E_1_Work_Space\evidence
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-11-03   오후 4:04                bind-lab
+
+
+PS C:\Users\User\E_1_Work_Space> Copy-Item ".\02_webserver\site\index.html" ".\evidence\bind-lab\index.html"
+PS C:\Users\User\E_1_Work_Space> Get-Content ".\evidence\bind-lab\index.html"
+<h1>Hello from Codyssey Docker!</h1>
+PS C:\Users\User\E_1_Work_Space> Get-NetTCPConnection -LocalPort 8082 -State Listen -ErrorAction SilentlyContinue
+PS C:\Users\User\E_1_Work_Space> $bindPath = (Resolve-Path ".\evidence\bind-lab").Path
+PS C:\Users\User\E_1_Work_Space> Write-Output $bindPathdocker run -d --name codyssey-bind-test -p 127.0.0.1:8082:80 --mount "type=bind,source=$bindPath,target=/usr/share/nginx/html,readonly" codyssey-web:1.0
+>> 종료 오류(Write-Output): "'PipelineVariable' 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. 올바른 변수 이름이 아니므로 '127.0.0.1:8082:80' 인수의 유효성을 검사할 수 없습니다."
+Write-Output : 'PipelineVariable' 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. 올바른 변수 이름이 아니므로 '127.0.0.1:8082:80' 인수의 유효성을 검사할 수 없습니다
+.
+위치 줄:1 문자:66
++ ... hdocker run -d --name codyssey-bind-test -p 127.0.0.1:8082:80 --mount ...
++                                                 ~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Write-Output], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationError,Microsoft.PowerShell.Commands.WriteOutputCommand
+Write-Output : 'PipelineVariable' 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. 올바른 변수 이름이 아니므로 '127
+.0.0.1:8082:80' 인수의 유효성을 검사할 수 없습니다.
+위치 줄:1 문자:66
++ ... hdocker run -d --name codyssey-bind-test -p 127.0.0.1:8082:80 --mount ...
++                                                 ~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Write-Output], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationError,Microsoft.PowerShell.Commands.WriteOutputCommand
+
+PS C:\Users\User\E_1_Work_Space> Write-Output $bindPath
+C:\Users\User\E_1_Work_Space\evidence\bind-lab
+PS C:\Users\User\E_1_Work_Space> docker run -d --name codyssey-bind-test -p 127.0.0.1:8082:80 --mount "type=bind,source=$bindPath,target=/usr/share/nginx/html,readonly" codyssey-web:1.0
+
+PS C:\Users\User\E_1_Work_Space> docker ps --filter "name=codyssey-bind-test"
+
+PS C:\Users\User\E_1_Work_Space> curl.exe -i http://127.0.0.1:8082/
+
+PS C:\Users\User\E_1_Work_Space> 종료 오류(TabExpansion2): "'inputScript' 매개 변수가 빈 문자열이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다."
+PS C:\Users\User\E_1_Work_Space> docker inspect --format '{{json .Mounts}}' codyssey-bind-test
+
+PS C:\Users\User\E_1_Work_Space> Set-Content -Path ".\evidence\bind-lab\index.html" -Value "<h1>Bind Mount Updated Successfully!</h1>" -Encoding UTF8
+PS C:\Users\User\E_1_Work_Space> Get-Content ".\evidence\bind-lab\index.html"
+<h1>Bind Mount Updated Successfully!</h1>
+PS C:\Users\User\E_1_Work_Space> docker exec codyssey-bind-test cat /usr/share/nginx/html/index.html
+
+PS C:\Users\User\E_1_Work_Space> curl.exe -i http://127.0.0.1:8082/
+
+PS C:\Users\User\E_1_Work_Space> $path = (Resolve-Path ".\evidence\bind-lab\index.html").Path
+PS C:\Users\User\E_1_Work_Space> [System.IO.File]::WriteAllText($path, "<h1>Bind Mount Updated Successfully!</h1>`n", [System.Text.UTF8Encoding]::new($false))
+PS C:\Users\User\E_1_Work_Space> curl.exe -i http://127.0.0.1:8082/
+
+PS C:\Users\User\E_1_Work_Space> Stop-Transcript
+**********************
+Windows PowerShell 기록 끝
+종료 시간: 20261103161020
+**********************
